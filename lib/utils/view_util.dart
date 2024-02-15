@@ -6,7 +6,7 @@ import '/utils/navigation.dart';
 import '/utils/styles/styles.dart';
 
 class ViewUtil {
-  static SSLSnackbar(
+  static snackbar(
     String msg, {
     String? btnName,
     void Function()? onPressed,
@@ -107,7 +107,6 @@ class ViewUtil {
           ),
           title: title,
           content: content,
-         
         );
       },
     );
@@ -146,4 +145,3 @@ class ViewUtil {
     );
   }
 }
-
