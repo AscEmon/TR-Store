@@ -1,6 +1,6 @@
  import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
+
 import '/global/widget/global_text.dart';
 import '/utils/navigation.dart';
 

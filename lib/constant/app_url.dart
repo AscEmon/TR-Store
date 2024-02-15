@@ -14,13 +14,13 @@ extension AppUrlExtention on AppUrl {
   static void setUrl(UrlLink urlLink) {
     switch (urlLink) {
       case UrlLink.isLive:
-        _baseUrl = "https://www.jsonplaceholder.org/";
+        _baseUrl = "https://jsonplaceholder.org/";
         _baseImageUrl = "";
 
         break;
 
       case UrlLink.isDev:
-        _baseUrl = "https://www.jsonplaceholder.org/";
+        _baseUrl = "https://jsonplaceholder.org/";
         _baseImageUrl = "";
 
         break;

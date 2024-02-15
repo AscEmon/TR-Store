@@ -29,7 +29,7 @@ extension KColorExtention on KColor {
       case KColor.primary:
         return Colors.blue;
       case KColor.secondary:
-        return Color(0xff5EA7FF);
+        return Color.fromARGB(255, 0, 0, 0);
       case KColor.accent:
         return Colors.blue;
       case KColor.red:

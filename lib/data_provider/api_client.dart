@@ -166,6 +166,7 @@ class ApiClient {
 
   Map<String, String> _getHeaders() {
     Map<String, String> headers = {
+      HttpHeaders.contentTypeHeader: AppConstant.APPLICATION_JSON.key,
       AppConstant.APP_VERSION.key:
           PrefHelper.getString(AppConstant.APP_VERSION.key),
       AppConstant.BUILD_NUMBER.key:
