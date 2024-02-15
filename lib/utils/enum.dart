@@ -3,8 +3,6 @@ enum LanguageOption {
   English,
 }
 
-
-
 enum Method {
   POST,
   GET,
@@ -24,9 +22,15 @@ enum ImageFor {
   asset,
   network,
 }
+
 enum SvgFor {
   asset,
   network,
 }
 
-
+enum AppStatus {
+  initial,
+  success,
+  error,
+  loading,
+}
