@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../modules/dashboard/views/dashboard_screen.dart';
+import '../modules/products/views/products_screen.dart';
 
 
 enum AppRoutes {
@@ -10,7 +10,7 @@ extension AppRoutesExtention on AppRoutes {
   Widget buildWidget<T extends Object>({T? arguments}) {
     switch (this) {
       case AppRoutes.dashboard:
-        return const DashboardScreen();
+        return const ProductsScreen();
     }
   }
 }

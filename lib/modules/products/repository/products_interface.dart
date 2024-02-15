@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 @immutable
-abstract class IDashboardRepository {
+abstract class IProductsRepository {
   
 }
 
