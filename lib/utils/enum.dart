@@ -34,3 +34,9 @@ enum AppStatus {
   error,
   loading,
 }
+
+
+enum Item{
+  increment,
+  decrement,
+}

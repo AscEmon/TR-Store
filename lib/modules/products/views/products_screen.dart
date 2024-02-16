@@ -7,7 +7,9 @@ import 'package:tr_store/modules/products/views/components/products_tile.dart';
 import 'package:tr_store/utils/extension.dart';
 
 import '../../../global/widget/global_cart.dart';
+import '../../../utils/app_routes.dart';
 import '../../../utils/enum.dart';
+import '../../../utils/navigation.dart';
 import '../../../utils/styles/styles.dart';
 import '/global/widget/global_appbar.dart';
 import '/global/widget/global_text.dart';
@@ -61,6 +63,13 @@ class _ProductsScreenState extends State<ProductsScreen> {
                         itemBuilder: (context, index) {
                           return ProductsTile(
                             products: state.products![index],
+                            onTap: () {
+                              Navigation.push(
+                                context,
+                                appRoutes: AppRoutes.productDetails,
+                                arguments: state.products![index].id,
+                              );
+                            },
                           );
                         },
                       );

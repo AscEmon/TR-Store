@@ -94,7 +94,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                               ),
                               Container(
                                 padding: EdgeInsets.symmetric(
-                                    vertical: 8.h, horizontal: 16.w),
+                                  vertical: 8.h,
+                                  horizontal: 16.w,
+                                ),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(8.r),
                                   border: Border.all(
