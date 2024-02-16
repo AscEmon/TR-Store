@@ -6,6 +6,7 @@ import 'package:tr_store/modules/products/bloc/products_state.dart';
 import 'package:tr_store/modules/products/views/components/products_tile.dart';
 import 'package:tr_store/utils/extension.dart';
 
+import '../../../global/widget/global_cart.dart';
 import '../../../utils/enum.dart';
 import '../../../utils/styles/styles.dart';
 import '/global/widget/global_appbar.dart';
@@ -31,6 +32,8 @@ class _ProductsScreenState extends State<ProductsScreen> {
     return Scaffold(
       appBar: GlobalAppBar(
         title: "Products",
+        centerTitle: true,
+        actions: const [GlobalCart()],
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 10.w),

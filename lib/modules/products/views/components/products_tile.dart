@@ -30,11 +30,13 @@ class ProductsTile extends StatelessWidget {
       leading: ClipRRect(
         borderRadius: BorderRadius.circular(10.r),
         child: Hero(
-          tag: products.id!,
+          tag: "${products.id!}",
           child: GlobalImageLoader(
-            imagePath: products.thumbnail ?? "",
+            imagePath: products.image ?? "",
             imageFor: ImageFor.network,
-            fit: BoxFit.contain,
+            fit: BoxFit.fill,
+            width: 50.w,
+            height: 40.h,
           ),
         ),
       ),

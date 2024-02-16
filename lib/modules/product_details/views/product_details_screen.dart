@@ -6,6 +6,7 @@ import 'package:tr_store/modules/product_details/bloc/product_details_state.dart
 import 'package:tr_store/utils/enum.dart';
 import 'package:tr_store/utils/extension.dart';
 
+import '../../../global/widget/global_cart.dart';
 import '../../../utils/styles/styles.dart';
 import '../bloc/product_details_bloc.dart';
 import '/global/widget/global_appbar.dart';
@@ -36,6 +37,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     return Scaffold(
       appBar: GlobalAppBar(
         title: "Productdetails",
+        centerTitle: true,
+        actions: const [GlobalCart()],
       ),
       body: BlocBuilder<ProductDetailsBloc, ProductDetailstate>(
         builder: (context, state) {
@@ -49,7 +52,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                 child: Column(
                   children: [
                     Hero(
-                      tag: widget.id,
+                      tag: "${widget.id}",
                       child: GlobalImageLoader(
                         imagePath: state.productDetails?.image ?? "",
                         imageFor: ImageFor.network,
