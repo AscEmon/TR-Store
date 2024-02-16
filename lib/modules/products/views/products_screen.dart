@@ -49,11 +49,11 @@ class _ProductsScreenState extends State<ProductsScreen> {
                   } else if (state.fetchRepoStatus == AppStatus.success) {
                     if (state.products?.isNotEmpty == true) {
                       return ListView.separated(
-                        
-                        controller: state.scrollController,
                         itemCount: state.products!.length,
                         separatorBuilder: (context, index) {
-                          return SizedBox(height: 10.h);
+                          return SizedBox(
+                            height: 10.h,
+                          );
                         },
                         itemBuilder: (context, index) {
                           return ProductsTile(
