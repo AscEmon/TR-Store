@@ -18,7 +18,7 @@ class ProductDetailsBloc extends Bloc<ProductDetailsEvent, ProductDetailstate> {
   void _fetchProductDetails(
       LoadProductDetailsEvent event, Emitter<ProductDetailstate> emit) async {
     try {
-      List<ProductsDetailsData> result =
+      ProductsDetailsData result =
           await _productDetailsRepository.fetchProductDetails(id: event.id);
 
       emit(

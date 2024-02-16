@@ -10,22 +10,22 @@ import 'product_details_interface.dart';
 
 class ProductDetailsRepository implements IProductDetailsRepository {
   @override
-  Future<List<ProductsDetailsData>> fetchProductDetails({
+  Future<ProductsDetailsData> fetchProductDetails({
     required int id,
   }) async {
-    Completer<List<ProductsDetailsData>> completer =
-        Completer<List<ProductsDetailsData>>();
+    Completer<ProductsDetailsData> completer = Completer<ProductsDetailsData>();
 
     try {
       NetworkRequestBuilder()
           .setUrl("${AppUrl.productDetails.url}$id")
           .setMethod(Method.GET)
           .setOnSuccess((response) async {
+        "response ::$response".log();
         final movies = productDetailsFromJson(response.data);
         if (movies.isNotEmpty) {
-          completer.complete(movies);
+          completer.complete(movies.where((element) => element.id == id).first);
         } else {
-          completer.complete([]);
+          completer.complete(ProductsDetailsData());
         }
       }).setOnFailed((errorMessage) {
         completer.completeError(errorMessage);

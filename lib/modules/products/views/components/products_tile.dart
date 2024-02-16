@@ -29,10 +29,13 @@ class ProductsTile extends StatelessWidget {
       tileColor: KColor.fill.color,
       leading: ClipRRect(
         borderRadius: BorderRadius.circular(10.r),
-        child: GlobalImageLoader(
-          imagePath: products.thumbnail ?? "",
-          imageFor: ImageFor.network,
-          fit: BoxFit.contain,
+        child: Hero(
+          tag: products.id!,
+          child: GlobalImageLoader(
+            imagePath: products.thumbnail ?? "",
+            imageFor: ImageFor.network,
+            fit: BoxFit.contain,
+          ),
         ),
       ),
       title: GlobalText(

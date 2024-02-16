@@ -6,7 +6,7 @@ import '../../../utils/enum.dart';
 @immutable
 class ProductDetailstate {
   final AppStatus fetchRepoStatus;
-  final List<ProductsDetailsData>? productDetails;
+  final ProductsDetailsData? productDetails;
 
   const ProductDetailstate({
     this.fetchRepoStatus = AppStatus.loading,
@@ -15,7 +15,7 @@ class ProductDetailstate {
 
   ProductDetailstate copyWith({
     AppStatus? fetchRepoStatus,
-    List<ProductsDetailsData>? productDetails,
+    ProductsDetailsData? productDetails,
   }) {
     return ProductDetailstate(
       fetchRepoStatus: fetchRepoStatus ?? this.fetchRepoStatus,
