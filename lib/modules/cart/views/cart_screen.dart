@@ -96,6 +96,7 @@ class CartScreen extends StatelessWidget {
                           itemBuilder: (context, index) {
                             return GlobalProductTile(
                               products: state.carts![index],
+                              isShowForCart: true,
                             );
                           },
                         );

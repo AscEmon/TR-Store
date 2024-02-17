@@ -16,10 +16,12 @@ class GlobalProductTile extends StatelessWidget {
     super.key,
     required this.products,
     this.onTap,
+    this.isShowForCart = false,
   });
 
   final Products products;
   final void Function()? onTap;
+  final bool isShowForCart;
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +66,8 @@ class GlobalProductTile extends StatelessWidget {
               BlocBuilder<CartBloc, CartState>(
                 builder: (context, state) {
                   return GlobalText(
-                    str: "Price : ${products.price ?? products.id}",
+                    str: "Unit price : ${products.id}",
+                    fontSize: 10,
                   );
                 },
               ),
@@ -73,7 +76,36 @@ class GlobalProductTile extends StatelessWidget {
                 products: products,
               ),
             ],
-          )
+          ),
+          if (isShowForCart) ...[
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                GlobalText(
+                  str: "Price : ${products.id}",
+                  fontSize: 10,
+                ),
+                Baseline(
+                  baseline: 20,
+                  baselineType: TextBaseline.ideographic,
+                  child: GlobalText(
+                    str: ".",
+                    fontSize: 36,
+                    textAlign: TextAlign.start,
+                    color: KColor.grey.color,
+                  ),
+                ),
+                GlobalText(
+                  str: "${products.item}",
+                  fontSize: 10,
+                ),
+                GlobalText(
+                  str: " = ${products.price}",
+                  fontSize: 10,
+                )
+              ],
+            )
+          ]
         ],
       ),
     );
