@@ -6,6 +6,7 @@ import 'package:tr_store/modules/products/bloc/products_state.dart';
 import 'package:tr_store/global/widget/global_product_tile.dart';
 import 'package:tr_store/utils/extension.dart';
 
+import '../../../global/shimmer_pkg/shimmer_list_view.dart';
 import '../../../global/widget/global_cart.dart';
 import '../../../utils/app_routes.dart';
 import '../../../utils/enum.dart';
@@ -14,6 +15,8 @@ import '../../../utils/styles/styles.dart';
 import '/global/widget/global_appbar.dart';
 import '/global/widget/global_text.dart';
 import 'package:flutter/material.dart';
+
+import 'components/shimmer_product_tile.dart';
 
 class ProductsScreen extends StatefulWidget {
   const ProductsScreen({Key? key}) : super(key: key);
@@ -48,8 +51,9 @@ class _ProductsScreenState extends State<ProductsScreen> {
               child: BlocBuilder<ProducsBloc, ProductsState>(
                 builder: (context, state) {
                   if (state.fetchRepoStatus == AppStatus.loading) {
-                    return Center(
-                      child: widget.centerCircularProgress(),
+                    return const ShimmerListView(
+                      itemCount: 10,
+                      child: ShimmerProductTile(),
                     );
                   } else if (state.fetchRepoStatus == AppStatus.success) {
                     if (state.products?.isNotEmpty == true) {
