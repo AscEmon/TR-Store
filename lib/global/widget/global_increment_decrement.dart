@@ -22,20 +22,26 @@ class GlobalIncrementDecrement extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        GestureDetector(
-          onTap: () {
-            cartBloc.add(AddProduct(products, Item.decrement));
-          },
-          child: const Icon(Icons.remove, size: 16),
-        ),
         BlocBuilder<CartBloc, CartState>(
           builder: (context, state) {
-            return Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.w),
-              child: GlobalText(
-                str: products.item?.toString() ?? "0",
-                fontSize: 14,
-              ),
+            return Row(
+              children: [
+                if (products.item! > 0) ...[
+                  GestureDetector(
+                    onTap: () {
+                      cartBloc.add(AddProduct(products, Item.decrement));
+                    },
+                    child: const Icon(Icons.remove, size: 16),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20.w),
+                    child: GlobalText(
+                      str: products.item?.toString() ?? "0",
+                      fontSize: 14,
+                    ),
+                  ),
+                ],
+              ],
             );
           },
         ),

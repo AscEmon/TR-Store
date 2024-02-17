@@ -38,7 +38,7 @@ class Products {
     this.publishedAt,
     this.updatedAt,
     this.userId,
-    this.item,
+    this.item=0,
     this.price,
   });
 
