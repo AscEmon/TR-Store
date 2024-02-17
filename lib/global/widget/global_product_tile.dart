@@ -3,15 +3,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tr_store/global/widget/global_image_loader.dart';
 import 'package:tr_store/modules/cart/bloc/cart_bloc.dart';
-import 'package:tr_store/modules/cart/bloc/cart_event.dart';
+import 'package:tr_store/modules/cart/bloc/cart_state.dart';
 import 'package:tr_store/modules/products/model/products_response.dart';
 import 'package:tr_store/utils/enum.dart';
 
-import '../../../../global/widget/global_text.dart';
-import '../../../../utils/styles/styles.dart';
+import 'global_increment_decrement.dart';
+import 'global_text.dart';
+import '../../utils/styles/styles.dart';
 
-class ProductsTile extends StatelessWidget {
-  const ProductsTile({
+class GlobalProductTile extends StatelessWidget {
+  const GlobalProductTile({
     super.key,
     required this.products,
     this.onTap,
@@ -19,6 +20,7 @@ class ProductsTile extends StatelessWidget {
 
   final Products products;
   final void Function()? onTap;
+
   @override
   Widget build(BuildContext context) {
     return ListTile(
@@ -59,42 +61,19 @@ class ProductsTile extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              GlobalText(
-                str: "Price : ${products.id}",
+              BlocBuilder<CartBloc, CartState>(
+                builder: (context, state) {
+                  return GlobalText(
+                    str: "Price : ${products.price ?? products.id}",
+                  );
+                },
               ),
               const Spacer(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      context.read<CartBloc>().add(DeleteProduct(products));
-                    },
-                    child: const Icon(
-                      Icons.delete,
-                      size: 16,
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20.w),
-                    child: GlobalText(
-                      str: products.item?.toString() ?? "0",
-                      fontSize: 14,
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      context.read<CartBloc>().add(AddProduct(products));
-                    },
-                    child: const Icon(
-                      Icons.add,
-                      size: 16,
-                    ),
-                  ),
-                ],
-              )
+              GlobalIncrementDecrement(
+                products: products,
+              ),
             ],
-          ),
+          )
         ],
       ),
     );

@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tr_store/modules/products/bloc/products_bloc.dart';
 import 'package:tr_store/modules/products/bloc/products_event.dart';
 import 'package:tr_store/modules/products/bloc/products_state.dart';
-import 'package:tr_store/modules/products/views/components/products_tile.dart';
+import 'package:tr_store/global/widget/global_product_tile.dart';
 import 'package:tr_store/utils/extension.dart';
 
 import '../../../global/widget/global_cart.dart';
@@ -61,13 +61,13 @@ class _ProductsScreenState extends State<ProductsScreen> {
                           );
                         },
                         itemBuilder: (context, index) {
-                          return ProductsTile(
+                          return GlobalProductTile(
                             products: state.products![index],
                             onTap: () {
                               Navigation.push(
                                 context,
                                 appRoutes: AppRoutes.productDetails,
-                                arguments: state.products![index].id,
+                                arguments: state.products![index],
                               );
                             },
                           );

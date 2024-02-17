@@ -1,3 +1,5 @@
+import 'package:tr_store/modules/products/model/products_response.dart';
+
 import '../modules/cart/views/cart_screen.dart';
 import 'package:flutter/material.dart';
 import '../modules/product_details/views/product_details_screen.dart';
@@ -16,10 +18,9 @@ extension AppRoutesExtention on AppRoutes {
         return const CartScreen();
       case AppRoutes.dashboard:
         return const ProductsScreen();
-
       case AppRoutes.productDetails:
         return ProductDetailsScreen(
-          id: arguments as int,
+          products: arguments as Products,
         );
     }
   }

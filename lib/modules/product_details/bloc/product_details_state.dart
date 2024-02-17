@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:tr_store/modules/product_details/model/product_details_response.dart';
+import 'package:tr_store/modules/products/model/products_response.dart';
 
 import '../../../utils/enum.dart';
 
 @immutable
 class ProductDetailstate {
   final AppStatus fetchRepoStatus;
-  final ProductsDetailsData? productDetails;
+  final Products? productDetails;
 
   const ProductDetailstate({
     this.fetchRepoStatus = AppStatus.loading,
@@ -15,7 +15,7 @@ class ProductDetailstate {
 
   ProductDetailstate copyWith({
     AppStatus? fetchRepoStatus,
-    ProductsDetailsData? productDetails,
+    Products? productDetails,
   }) {
     return ProductDetailstate(
       fetchRepoStatus: fetchRepoStatus ?? this.fetchRepoStatus,

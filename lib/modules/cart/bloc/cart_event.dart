@@ -1,3 +1,4 @@
+import '../../../utils/enum.dart';
 import '../../products/model/products_response.dart';
 
 sealed class CartEvent {}
@@ -6,10 +7,18 @@ class LoadCarts implements CartEvent {}
 
 class AddProduct implements CartEvent {
   final Products products;
-  AddProduct(this.products);
+  final Item item;
+  AddProduct(
+    this.products,
+    this.item,
+  );
 }
 
-class DeleteProduct implements CartEvent {
-  final Products products;
-  DeleteProduct(this.products);
+class DeleteAllProduct implements CartEvent {}
+
+class GetProductByID implements CartEvent {
+  final int id;
+  GetProductByID({
+    required this.id,
+  });
 }

@@ -24,7 +24,7 @@ class Products {
   String? updatedAt;
   int? userId;
   int? item;
-
+  int? price;
   Products({
     this.id,
     this.slug,
@@ -39,6 +39,7 @@ class Products {
     this.updatedAt,
     this.userId,
     this.item,
+    this.price,
   });
 
   factory Products.fromJson(Map<String, dynamic> json) => Products(

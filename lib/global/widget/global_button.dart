@@ -19,14 +19,14 @@ class GlobalButton extends StatelessWidget {
     required this.buttonText,
     this.isRounded = true,
     this.btnHeight,
-    this.roundedBorderRadius = 17,
+    this.roundedBorderRadius = 8,
     this.btnBackgroundActiveColor,
     this.textFontSize,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    Color btnColor = btnBackgroundActiveColor ?? KColor.accent.color;
+    Color btnColor = btnBackgroundActiveColor ?? KColor.white.color;
 
     return ElevatedButton(
       style: ButtonStyle(
@@ -57,14 +57,10 @@ class GlobalButton extends StatelessWidget {
             str: buttonText,
             fontWeight: FontWeight.w500,
             fontSize: textFontSize ?? 14,
-            color: KColor.white.color,
+            color: KColor.black.color,
           ),
         ),
       ),
     );
   }
 }
-
-
-
- 
