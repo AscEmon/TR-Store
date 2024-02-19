@@ -16,6 +16,8 @@ class AddProduct implements CartEvent {
 
 class DeleteAllProduct implements CartEvent {}
 
+class LoadDbCart implements CartEvent {}
+
 class GetProductByID implements CartEvent {
   final int id;
   GetProductByID({

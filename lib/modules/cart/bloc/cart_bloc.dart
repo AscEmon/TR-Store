@@ -10,12 +10,12 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   CartBloc() : super(const CartState(carts: [])) {
     on<AddProduct>(_addProductInCart);
     on<DeleteAllProduct>(_deleteAllProduct);
+    on<LoadDbCart>(getDbCart);
   }
 
   _addProductInCart(AddProduct event, Emitter<CartState> emit) async {
     int? index =
         state.carts?.indexWhere((element) => element.id == event.products.id);
-   
 
     if (index == -1) {
       final carts = [...state.carts!, event.products];
@@ -75,5 +75,11 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     state.carts?.clear();
     DBProvider.db.deleteAllCart();
     emit(state.copyWith(carts: [], totalPrice: 0));
+  }
+
+  getDbCart(LoadDbCart event, Emitter<CartState> emit) async {
+    final dbCart = await DBProvider.db.getAllCarts();
+    emit(state.copyWith(carts: dbCart, totalPrice: 0));
+    _calculateTotalPrice(dbCart, emit);
   }
 }

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tr_store/global/widget/global_product_tile.dart';
+import 'package:tr_store/modules/cart/bloc/cart_bloc.dart';
+import 'package:tr_store/modules/cart/bloc/cart_event.dart';
 import 'package:tr_store/modules/products/bloc/products_bloc.dart';
 import 'package:tr_store/modules/products/bloc/products_event.dart';
 import 'package:tr_store/modules/products/bloc/products_state.dart';
@@ -29,6 +31,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
   void initState() {
     super.initState();
     context.read<ProducsBloc>().add(LoadProductsEvent());
+    context.read<CartBloc>().add(LoadDbCart());
   }
 
   @override
@@ -72,8 +75,6 @@ class _ProductsScreenState extends State<ProductsScreen> {
                                 appRoutes: AppRoutes.productDetails,
                                 arguments: state.products![index],
                               );
-                             
-                              
                             },
                           );
                         },
