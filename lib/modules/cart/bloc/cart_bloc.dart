@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tr_store/data_provider/local_db/db_provider.dart';
 import 'package:tr_store/modules/cart/bloc/cart_event.dart';
 import 'package:tr_store/modules/cart/bloc/cart_state.dart';
 import 'package:tr_store/utils/enum.dart';
@@ -14,6 +15,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   _addProductInCart(AddProduct event, Emitter<CartState> emit) async {
     int? index =
         state.carts?.indexWhere((element) => element.id == event.products.id);
+   
 
     if (index == -1) {
       final carts = [...state.carts!, event.products];
@@ -71,6 +73,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
 
   _deleteAllProduct(DeleteAllProduct event, Emitter<CartState> emit) {
     state.carts?.clear();
+    DBProvider.db.deleteAllCart();
     emit(state.copyWith(carts: [], totalPrice: 0));
   }
 }

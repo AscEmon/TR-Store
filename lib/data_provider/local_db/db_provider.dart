@@ -4,6 +4,7 @@ import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:tr_store/modules/products/model/products_response.dart';
+import 'package:tr_store/utils/extension.dart';
 
 class DBProvider {
   static Database? _database;
@@ -23,7 +24,7 @@ class DBProvider {
     return _database!;
   }
 
-  // Create the database and the Employee table
+  // Create the database and the Product table
   initDB() async {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
     final path = join(documentsDirectory.path, 'product.db');
@@ -40,10 +41,20 @@ class DBProvider {
           'item INTEGER,'
           'price INTEGER'
           ')');
+      await db.execute('CREATE TABLE Cart('
+          'id INTEGER PRIMARY KEY,'
+          'name TEXT,'
+          'content TEXT,'
+          'title TEXT,'
+          'thumbnail TEXT,'
+          'image TEXT,'
+          'item INTEGER,'
+          'price INTEGER'
+          ')');
     });
   }
 
-  // Insert employee on database
+  // Insert product on database
   createProduct(Products products) async {
     await deleteAllProducts();
     final db = await database;
@@ -52,7 +63,7 @@ class DBProvider {
     return res;
   }
 
-  // Delete all employees
+  // Delete all product
   Future<int> deleteAllProducts() async {
     final db = await database;
     final res = await db.rawDelete('DELETE FROM Product');
@@ -63,6 +74,69 @@ class DBProvider {
   Future<List<Products>> getAllProducts() async {
     final db = await database;
     final res = await db.rawQuery("SELECT * FROM Product");
+
+    List<Products> list =
+        res.isNotEmpty ? res.map((c) => Products.fromJson(c)).toList() : [];
+
+    return list;
+  }
+
+  Future<void> updateProduct(Products products) async {
+    try {
+      products.item.toString().log();
+
+      final Database db = await database;
+
+      await db.update(
+        'Product',
+        products.toJson(),
+        where: "id = ?",
+        whereArgs: [products.id],
+      );
+    } catch (e) {
+      "Error updating product: $e".log();
+    }
+    createCart(products);
+  }
+
+  createCart(Products products) async {
+    final db = await database;
+    final cart = await getAllCarts();
+    final index = cart.indexWhere((element) => element.id == products.id);
+    if (index == -1) {
+      await db.insert('Cart', products.toJson());
+    }
+    updateCart(products);
+  }
+
+  Future<void> updateCart(Products products) async {
+    try {
+      products.item.toString().log();
+
+      final Database db = await database;
+
+      await db.update(
+        'Cart',
+        products.toJson(),
+        where: "id = ?",
+        whereArgs: [products.id],
+      );
+    } catch (e) {
+      "Error updating product: $e".log();
+    }
+  }
+
+  // Delete all product
+  Future<int> deleteAllCart() async {
+    final db = await database;
+    final res = await db.rawDelete('DELETE FROM Cart');
+
+    return res;
+  }
+
+  Future<List<Products>> getAllCarts() async {
+    final db = await database;
+    final res = await db.rawQuery("SELECT * FROM Cart");
 
     List<Products> list =
         res.isNotEmpty ? res.map((c) => Products.fromJson(c)).toList() : [];

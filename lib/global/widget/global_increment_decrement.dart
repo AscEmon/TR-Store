@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:tr_store/data_provider/local_db/db_provider.dart';
 import 'package:tr_store/global/widget/global_text.dart';
 import 'package:tr_store/utils/styles/k_colors.dart';
 
@@ -21,16 +22,18 @@ class GlobalIncrementDecrement extends StatelessWidget {
   Widget build(BuildContext context) {
     final cartBloc = context.read<CartBloc>();
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         BlocBuilder<CartBloc, CartState>(
           builder: (context, state) {
             return Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 if (products.item! > 0) ...[
                   GestureDetector(
-                    onTap: () {
+                    onTap: () async {
                       cartBloc.add(AddProduct(products, Item.decrement));
+                      await DBProvider.db.updateProduct(products);
                     },
                     child: Container(
                       decoration: BoxDecoration(
@@ -46,9 +49,11 @@ class GlobalIncrementDecrement extends StatelessWidget {
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 20.w),
-                    child: GlobalText(
-                      str: products.item?.toString() ?? "0",
-                      fontSize: 14,
+                    child: Center(
+                      child: GlobalText(
+                        str: products.item?.toString() ?? "0",
+                        fontSize: 14,
+                      ),
                     ),
                   ),
                 ],
@@ -57,8 +62,9 @@ class GlobalIncrementDecrement extends StatelessWidget {
           },
         ),
         GestureDetector(
-          onTap: () {
+          onTap: () async {
             cartBloc.add(AddProduct(products, Item.increment));
+            await DBProvider.db.updateProduct(products);
           },
           child: Container(
             decoration: BoxDecoration(
