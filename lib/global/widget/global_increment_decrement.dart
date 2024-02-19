@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tr_store/global/widget/global_text.dart';
+import 'package:tr_store/utils/styles/k_colors.dart';
 
 import '../../modules/cart/bloc/cart_bloc.dart';
 import '../../modules/cart/bloc/cart_event.dart';
@@ -31,7 +32,17 @@ class GlobalIncrementDecrement extends StatelessWidget {
                     onTap: () {
                       cartBloc.add(AddProduct(products, Item.decrement));
                     },
-                    child: const Icon(Icons.remove, size: 16),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: KColor.white.color.withOpacity(0.5),
+                        borderRadius: BorderRadius.circular(6.r),
+                        border: Border.all(
+                          width: 1.w,
+                          color: KColor.black.color,
+                        ),
+                      ),
+                      child: const Icon(Icons.remove),
+                    ),
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 20.w),
@@ -49,7 +60,17 @@ class GlobalIncrementDecrement extends StatelessWidget {
           onTap: () {
             cartBloc.add(AddProduct(products, Item.increment));
           },
-          child: const Icon(Icons.add, size: 16),
+          child: Container(
+            decoration: BoxDecoration(
+              color: KColor.white.color.withOpacity(0.5),
+              borderRadius: BorderRadius.circular(6.r),
+              border: Border.all(
+                width: 1.w,
+                color: KColor.black.color,
+              ),
+            ),
+            child: const Icon(Icons.add),
+          ),
         ),
       ],
     );
