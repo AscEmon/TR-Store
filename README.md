@@ -5,9 +5,21 @@ I developed a simple Flutter application that displays the jsonplaceHolder data 
 
 
 ## Table of Contents
+- [Screenshots](#screenshots)
 - [Project Architecture](#project-architecture)
 - [Flavor Setup using --dart-define](#Flavor)
 - [Future Scope](#Future-Scope)
+
+## Screenshots
+Include some screenshots of your application to give users a visual preview.
+
+![Screenshot 1](1.jpg)
+
+![Screenshot 2](2.jpg)
+
+![Screenshot 3](3.jpg)
+
+
 
 
 ## Project Architecture
