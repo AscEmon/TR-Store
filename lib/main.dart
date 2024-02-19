@@ -5,7 +5,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:tr_store/data_provider/local_db/db_provider.dart';
 import 'package:tr_store/utils/mixin/bloc_provider_mixin.dart';
+
 import '/constant/app_url.dart';
 import '/data_provider/pref_helper.dart';
 import '/utils/app_version.dart';
@@ -18,6 +20,7 @@ import 'modules/products/views/products_screen.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initServices();
+
   //Set Potraite Mode only
   await SystemChrome.setPreferredOrientations(
     [
@@ -37,6 +40,7 @@ initServices() async {
   );
   await PrefHelper.init();
   await AppVersion.getVersion();
+  await DBProvider.db.database;
   await NetworkConnection.instance.internetAvailable();
 }
 

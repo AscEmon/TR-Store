@@ -1,9 +1,10 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:tr_store/global/widget/global_product_tile.dart';
 import 'package:tr_store/modules/products/bloc/products_bloc.dart';
 import 'package:tr_store/modules/products/bloc/products_event.dart';
 import 'package:tr_store/modules/products/bloc/products_state.dart';
-import 'package:tr_store/global/widget/global_product_tile.dart';
 import 'package:tr_store/utils/extension.dart';
 
 import '../../../global/shimmer_pkg/shimmer_list_view.dart';
@@ -14,8 +15,6 @@ import '../../../utils/navigation.dart';
 import '../../../utils/styles/styles.dart';
 import '/global/widget/global_appbar.dart';
 import '/global/widget/global_text.dart';
-import 'package:flutter/material.dart';
-
 import 'components/shimmer_product_tile.dart';
 
 class ProductsScreen extends StatefulWidget {
@@ -67,12 +66,14 @@ class _ProductsScreenState extends State<ProductsScreen> {
                         itemBuilder: (context, index) {
                           return GlobalProductTile(
                             products: state.products![index],
-                            onTap: () {
+                            onTap: () async {
                               Navigation.push(
                                 context,
                                 appRoutes: AppRoutes.productDetails,
                                 arguments: state.products![index],
                               );
+                             
+                              
                             },
                           );
                         },

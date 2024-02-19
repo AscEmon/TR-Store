@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tr_store/utils/enum.dart';
+import 'package:tr_store/utils/network_connection.dart';
 
 class GlobalImageLoader extends StatelessWidget {
   const GlobalImageLoader({
@@ -23,7 +24,13 @@ class GlobalImageLoader extends StatelessWidget {
         height: height,
         width: width,
         fit: fit,
-        errorBuilder: (context, exception, stackTrace) => const Text('😢'),
+        errorBuilder: (context, exception, stackTrace) {
+          if (NetworkConnection.instance.isInternet) {
+            return const Text('😢');
+          } else {
+            return const Icon(Icons.wifi_off_rounded);
+          }
+        },
       );
     } else {
       return Image.asset(
@@ -36,5 +43,3 @@ class GlobalImageLoader extends StatelessWidget {
     }
   }
 }
-
- 
