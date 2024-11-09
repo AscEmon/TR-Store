@@ -30,7 +30,7 @@ My application starts by making a request to an external server to fetch data. T
 # NetworkRequestBuilder:
 The API client uses the NetworkRequestBuilder to construct and configure the details of the network request. The builder pattern is used to make the construction of complex request objects more flexible and customizable.
 # Repository:
-Once the request is built, it is passed to the repository. The repository acts as an abstraction layer between the data source (for remote in this case, the API client and local which i used Hive database).
+Once the request is built, it is passed to the repository. The repository acts as an abstraction layer between the data source (for remote in this case, the API client and local which i used SQflight database).
 The repository contains methods that define the data-fetching logic. These methods use the API client's request to fetch data from the server.
 # Abstract Class:
 Abstract class likely defines a set of methods or an interface that how data should be processed or handled.
